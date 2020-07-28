@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/img/logo_r_resumme.png" type="image/x-icon" />
+    <title>Sign Up</title>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="assets/css/main.css">
+  </head>
+  <body>
+    <style>
+        .section { position: absolute; left: 50%; transform: translateX(-50%); }
+    </style>
+    <form>
+      {% csrf_token %}
+      <div class="login column is-4 ">
+        <section class="section">
+          <div class="field">
+            <label class="label">UserID</label>
+            <div class="control has-icons-right">
+              <input class="input" type="text" id = "signup_id">
+              <span class="icon is-small is-right">
+                <i class="fa fa-user"></i>
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Nickname</label>
+            <div class="control has-icons-right">
+              <input class="input" type="text" id = "signup_nick">
+              <span class="icon is-small is-right">
+                <i class="fab fa-github"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-right">
+              <input class="input" type="text" id = "signup_email">
+              <span class="icon is-small is-right">
+                <i class="fa fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control has-icons-right">
+              <input class="input" type="password" id = "signup_pw">
+              <span class="icon is-small is-right">
+                <i class="fa fa-key"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Address</label>
+            <div class="control has-icons-right">
+              <input class="input" type="text" id = "signup_ad" placeholder="주소">
+              <a onclick="sample5_execDaumPostcode()" value="주소 검색" >주소검색</a>
+          
+              <span class="icon is-small is-right">
+                <i class="fa fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+ 
+          <div class="has-text-centered">
+            <a class="button is-vcentered is-primary is-outlined" id = "signup_btn">Sign Up!</a>
+          </div>
+          <div class="has-text-centered">
+            <a href="/"> Already have an account? Log in now !</a>
+          </div>
+        </section>
+      </div>
+      <div id="particles-js" class="interactive-bg column is-8">
+
+      </div>
+    </form>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src = "http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+
+      function sample5_execDaumPostcode() {
+          new daum.Postcode({
+              oncomplete: function(data) {
+                  var addr = data.address; // 최종 주소 변수
+  
+                  // 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById("signup_ad").value = addr;
+              }
+          }).open();
+      }
+    </script>
+    <script>
+      $('[id = signup_btn]').click(() => {
+      $.ajax({  
+          type : 'post',
+          url : '../../signup_function/',
+          data : {
+              'signup_id' : $('[id = signup_id]').val(),
+              'signup_pw' : $('[id = signup_pw]').val(),
+              'signup_email' : $('[id = signup_email]').val(),
+              'signup_nick' : $('[id = signup_nick]').val(),
+              'signup_ad' : $('[id = signup_ad]').val(),                 
+              'csrfmiddlewaretoken' : $("[name = csrfmiddlewaretoken]").val()
+          },
+          success: function(res){
+              if (res == 0) {alert("회원가입 완료!"); location.href = "/"}
+              else if (res == 1) {alert("이미 사용중인 ID입니다.")}
+              else if (res == 2) {alert("주소를 확인해 주세요")}
+              else if (res == 3) {alert("이메일을 확인해 주세요")}
+          },
+        });
+      } )
+    </script>
+
+  </body>
+</html>

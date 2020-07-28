@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/img/logo_r_resumme.png" type="image/x-icon" />
+    <title>Sign Up</title>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="assets/css/main.css">
+  </head>
+  <body>
+    <style>
+        .section { position: absolute; left: 50%; transform: translateX(-50%); }
+    </style>
+    <form>
+      {% csrf_token %}
+      <div class="login column is-4 ">
+        <section class="section">
+          <div class="field">
+            <label class="label">Nickname</label>
+            <div class="control has-icons-right">
+              <input class="input" type="text" id = "findpw_nick">
+              <span class="icon is-small is-right">
+                <i class="fab fa-github"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-right">
+              <input class="input" type="text" id = "findpw_email">
+              <span class="icon is-small is-right">
+                <i class="fa fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">ID</label>
+            <div class="control has-icons-right">
+              <input class="input" type="text" id = "findpw_id">
+              <span class="icon is-small is-right">
+                <i class="fa fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+          <div class="has-text-centered">
+            <a class="button is-vcentered is-primary is-outlined" id = "findpw_btn">Find Password!</a>
+          </div>
+        </section>
+      </div>
+      <div id="particles-js" class="interactive-bg column is-8">
+
+      </div>
+    </form>
+    <script src = "http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $('[id = findpw_btn]').click(() => {
+        $.ajax({
+            type : 'post',
+            url : '/findpw_function/',
+            data : {
+                'findpw_nick' : $('[id = findpw_nick]').val(),
+                'findpw_email' : $('[id = findpw_email]').val(),
+                'findpw_id' : $('[id = findpw_id]').val(),     
+                'csrfmiddlewaretoken' : $("[name = csrfmiddlewaretoken]").val()
+            },
+            success: function(res){
+              if(res.result) {
+                alert("입력하신 닉네임 또는 이메일 또는 아이디가 올바르지 않습니다.")
+              } else {
+                var new_pw = prompt("변경할 패스워드를 입력해주세요:", "")
+                if(confirm("변경할 패스워드가"+new_pw+"가 맞나요?"))
+                  $.ajax({
+                    type : 'post',
+                    url : '/changepw_function/',
+                    data : {
+                        'change_pw' : new_pw,
+                        'user_id':res.user_id,
+                        'csrfmiddlewaretoken' : $("[name = csrfmiddlewaretoken]").val()
+                  },
+                  success:function(res){
+                    if(res==0){alert("비밀번호 변경 완료!"); location.href = "/"}
+                  }
+                })
+               else  
+                  return false;
+              }
+          }
+        })
+      })
+      </script>
+  </body>
+</html>

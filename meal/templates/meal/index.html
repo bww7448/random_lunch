@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+        {%load static%}
+    </head>
+<body>
+    <style>
+        .cloumn :hover {
+            color: #294d6b;
+            background: #4f8aba;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+        .column :active {
+            color: #294d6b;
+            background: #427aa9;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.2);
+            }
+        .column :focus {
+            color: #294d6b;
+            background: #4f8aba;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+      <div class="container">
+        <div class="columns is-multiline">
+          <div class="column is-one-third is-text-centered">
+              <figure class="media-left">
+                <span class="icon">
+                  <i class="has-text-warning fas fa-columns fa-lg"></i>
+                </span>
+              </figure>
+              <div class="media-content">
+                <div class="content">                  <br><br>
+                  <h1 class = "title is-size 6" margin:50px>
+                    <strong>{{ request.session.user.user_nick}}님 반갑습니다. </strong>
+                  </h1>
+                </div>
+              </div>
+
+          </div>
+    
+          <div class="column is-half">
+              <figure class="media-left">
+                <span class="icon has-text-info">
+                  <i class="fab fa-lg fa-wpforms"></i>
+                </span>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <img src="/static/meal/index/team6.png" width=400 height=150>
+                </div>
+              </div>
+
+          </div>
+          <div class="content has-text-centered">
+            <br><br><br><br><br>
+            <a margin:50px class="button is-primary is-normal" onclick="location.href='../'" >로그아웃</a>
+          </div>
+
+            </article>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    <section class="section has-background-light">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+              <article class="notification is-info media" 
+              onmouseover="this.style.backgroundColor='white', this.style.color='Royalblue', this.style.borderColor='Royalblue'"
+              onmouseout="this.style.backgroundColor='', this.style.color='', this.style.borderColor=''">
+                <figure class="media-left">
+                  <span class="icon is-medium">
+                    <i class="fab fa-css3-alt fa-3x"></i>
+                  </span>
+                </figure>
+                <div class="media-content">
+                  <div onclick="location.href='/meal/search_all/'" class="content">
+                    <h1 class="title is-size-4">내 주변 식당</h1>
+                    <p class="is-size-5">
+                        주변에 어떤 식당이 있는지 궁금하시죠?<br>
+                        저희가 찾아 드릴게요<br>
+                        <span class="emoticon">ᕕ( ᐛ )ᕗ</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+      
+            <div class="column">
+              <article class="notification is-primary media" 
+              onmouseover="this.style.backgroundColor='white', this.style.color='MediumSeaGreen', this.style.borderColor='MediumSeaGreen'"
+              onmouseout="this.style.backgroundColor='', this.style.color='', this.style.borderColor=''">
+                <figure class="media-left">
+                  <span class="icon is-medium">
+                    <i class="fas fa-2x fa-align-justify"></i>
+                  </span>
+                </figure>
+                <div onclick="location.href='/meal/random_lunch/'" class="media-content">
+                  <div class="content">
+                    <h1 class="title is-size-4">오점뭐?</h1>
+                    <p class="is-size-5">
+                        오늘 점심은 어디서 드세요?<br>
+                        헛;; 고민이시라고요?<br>
+                        그럼 마음편하게 눌러보세요<br>
+                        <span class="emoticon">⦤(^ー^)⦥</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+      
+            <div class="column">
+              <article class="notification is-warning media" 
+              onmouseover="this.style.backgroundColor='white', this.style.color='Goldenrod', this.style.borderColor='Goldenrod'"
+              onmouseout="this.style.backgroundColor='', this.style.color='', this.style.borderColor=''">
+                <figure class="media-left">
+                  <span class="icon is-medium">
+                    <i class="fas fa-2x fa-shield-alt"></i>
+                  </span>
+                </figure>
+                <div class="media-content">
+                  <div onclick="location.href='/meal/mylocation/'" class="content">
+                    <h1 class="title is-size-4">내 위치 변경</h1>
+                    <p class="is-size-5">
+                        새로운 곳은 어떠신가요?<br>
+                        저희에게도 알려주세요!<br>
+                        새로운 점심을 찾아드릴게요<br>
+                        <span class="emoticon">٩(^ᴗ^)۶</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="section">
+        <div class="container">
+          <div class="columns is-multiline">
+            <div class="column is-one-third">
+              <article class="notification media has-background-white">
+                <figure class="media-left">
+                  <span class="icon">
+                    <i class="has-text-warning fas fa-columns fa-lg"></i>
+                  </span>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <h1 class="title is-size-4">내 위치</h1>
+                    <div id="map" style="width:350px;height:200px;"></div>
+                    <script type ="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=849fd1b1d68908f0370f8b19d303280f"></script>
+                    <script>
+                        x = {{ my_user.user_loc_x }}
+                        y = {{ my_user.user_loc_y }}
+                        var mapContainer = document.getElementById('map');// 지도를 표시할 div 
+                        var mapOption = {
+                                center: new kakao.maps.LatLng(y, x), // 지도의 중심좌표
+                                level: 4, // 지도의 확대 레벨
+            
+                            }; 
+                
+                        // 지도를 생성한다 
+                        var map = new kakao.maps.Map(mapContainer, mapOption); 
+                        var markerPosition  = new kakao.maps.LatLng(y, x); //마커표시 위치 ->수정
+
+                        // 마커를 생성합니다
+                        var marker = new kakao.maps.Marker({
+                            position: markerPosition
+                        });
+                        marker.setMap(map);
+
+                
+
+                        var circle = new kakao.maps.Circle({
+                            map: map, // 원을 표시할 지도 객체
+                            center: new kakao.maps.LatLng(y, x), // 지도의 중심 좌표
+                            radius : 200, // 원의 반지름 (단위 : m)
+                            fillColor: '#acb3f0', // 채움 색
+                            fillOpacity: 0.5, // 채움 불투명도
+                            strokeWeight: 2, // 선의 두께
+                            strokeColor: '#0c4bbd', // 선 색
+                            strokeOpacity: 0.9, // 선 투명도 
+                            strokeStyle: 'solid' // 선 스타일
+                        });	
+                
+                    </script>
+                  </div>
+                </div>
+              </article>
+            </div>
+      
+            <div class="column is-one-third">
+              <article class="notification has-background-white media">
+                <figure class="media-left">
+                  <span class="icon has-text-info">
+                    <i class="fab fa-lg fa-wpforms"></i>
+                  </span>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <h1 class="title is-size-4">내가 간 식당</h1>
+                    <table>
+                      <tr>
+                      <td>{{last1}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{last2}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{last3}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{last4}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{last5}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </article>
+            </div>
+      
+            <div class="column is-one-third">
+              <article class="notification has-background-white media">
+                <figure class="media-left">
+                  <span class="icon has-text-danger">
+                    <i class="fas fa-lg fa-cubes"></i>
+                  </span>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <h1 class="title is-size-4">Thanks to...</h1>
+                    <div>
+                      <img src="/static/meal/index/kfq.jpeg" width=70 height=70>
+                      <img src="/static/meal/index/kakao.png" width=120><br>
+                      <img src="/static/meal/index/hangaram.png" width=200 height=32>
+                      <img src="/static/meal/index/ggoreb.png" width=200 height=47>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+      
+            <div class="column is-one-third">
+              <article class="notification has-background-white media">
+                <figure class="media-left">
+                  <span class="icon has-text-grey">
+                    <i class="fas fa-lg fa-cogs"></i>
+                  </span>
+                </figure>
+              </article>
+            </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>   
+      
+</body>
+</html>

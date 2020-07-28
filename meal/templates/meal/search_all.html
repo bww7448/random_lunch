@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cover - Free Bulma template</title>
+    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Bulma Version 0.8.2-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.8.2/css/bulma.min.css" />
+    <style type="text/css">
+        html,
+        body {
+            font-family: 'Open Sans';
+        }
+
+        img {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero is-info is-default is-bold">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-burger burger" data-target="navbarMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="tabs is-right">
+                            <ul>
+                                <li><a  class="subtitle is size-1 is-active">식당조회</a></li>
+                                <li><a  class="subtitle is size-1" href="/meal/">메인으로</a></li>
+                                <li><a  class="subtitle is size-1" href="/meal/random_lunch/">오점뭐</a></li>
+                                <li><a  class="subtitle is size-1" href="/meal/mylocation/">위치변경</a></li>
+                                <li><a class="subtitle is size-1" href="../..">로그아웃</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-size6">
+                내 주변 식당 보기
+                </h1>
+                <h2 class="subtitle is-size4">
+                    Knowledge is power.
+                </h2>
+            </div>
+        </div>
+    </section>
+    <selection class = "hero">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <br>                    
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>식당명</th><th>주소</th>
+                            <th>연락처</th><th>카테고리</th><th>거리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if restaurant_all %}
+                            {% for r in restaurant_all %}
+                            <tr>
+                                <td><a href="{{r.place_url}}" onclick="window.open(this.href, '_blanck', 'width=900, height=550'); return false">{{r.place_name}}</a></td>
+                                <td>{{r.road_address_name}}</td>
+                                <td>{{r.phone}}</td>
+                                <td>{{r.category_name}}</td>
+                                <td>{{r.distance}}m</td>
+                                <td></td>
+                                
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr> 자료가 없음 </tr>
+                        {% endif %}
+
+                    </tbody>
+                
+                
+                
+
+
+
+
+
+            </div>
+        </div>
+    </section>
+    <script src="../js/bulma.js"></script>
+</body>
+
+</html>

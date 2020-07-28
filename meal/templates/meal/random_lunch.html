@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cover - Free Bulma template</title>
+    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Bulma Version 0.8.2-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.8.2/css/bulma.min.css" />
+    <style type="text/css">
+        html,
+        body {
+            font-family: 'Open Sans';
+        }
+
+        /* img {
+            padding: 5px;
+            border: 1px solid #ccc;
+        } */
+        .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+        .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
+        .map_wrap {position:relative;width:100%;height:500px;}
+        #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+        .bg_white {background:#fff;}
+        #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
+        #menu_wrap .option{text-align: center;}
+        #menu_wrap .option p {margin:10px 0;}  
+        #menu_wrap .option button {margin-left:5px;}
+        #placesList li {list-style: none;}
+        #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
+        #placesList .item span {display: block;margin-top:4px;}
+        #placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+        #placesList .item .info{padding:10px 0 10px 55px;}
+        #placesList .info .gray {color:#8a8a8a;}
+        #placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
+        #placesList .info .tel {color:#009900;}
+        #placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
+        #placesList .item .marker_1 {background-position: 0 -10px;}
+        #placesList .item .marker_2 {background-position: 0 -56px;}
+        #placesList .item .marker_3 {background-position: 0 -102px}
+        #placesList .item .marker_4 {background-position: 0 -148px;}
+        #placesList .item .marker_5 {background-position: 0 -194px;}
+        #placesList .item .marker_6 {background-position: 0 -240px;}
+        #placesList .item .marker_7 {background-position: 0 -286px;}
+        #placesList .item .marker_8 {background-position: 0 -332px;}
+        #placesList .item .marker_9 {background-position: 0 -378px;}
+        #placesList .item .marker_10 {background-position: 0 -423px;}
+        #placesList .item .marker_11 {background-position: 0 -470px;}
+        #placesList .item .marker_12 {background-position: 0 -516px;}
+        #placesList .item .marker_13 {background-position: 0 -562px;}
+        #placesList .item .marker_14 {background-position: 0 -608px;}
+        #placesList .item .marker_15 {background-position: 0 -654px;}
+        #pagination {margin:10px auto;text-align: center;}
+        #pagination a {display:inline-block;margin-right:10px;}
+        #pagination .on {font-weight: bold; cursor: default;color:#777;}    
+    </style>
+</head>
+
+<body>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <section class="hero is-primary is-default is-bold">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-burger burger" data-target="navbarMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="tabs is-right">
+                            <ul>
+                                <li><a  class="subtitle is size-1 is-active">오점뭐</a></li>
+                                <li><a  class="subtitle is size-1" href="/meal/">메인으로</a></li>
+                                <li><a  class="subtitle is size-1" href="/meal/search_all/">식당조회</a></li>
+                                <li><a  class="subtitle is size-1" href="/meal/mylocation/">위치변경</a></li>
+                                <li><a class="subtitle is size-1" href="../..">로그아웃</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-size6">
+                오늘 점심 뭐먹지?
+                </h1>
+                <h2 class="subtitle is-size4">
+                    Part of the secret of success in life is to eat what you like and let the food fight it out inside.
+                </h2>
+            </div>
+        </div>
+    </section>
+    <selection class = "hero">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="columns is-4 is-multiline" >
+                    <iframe src="{{pick.place_url}}" frameborder="1" width="900px" height="600px"></iframe>   
+                                               
+                    <div style = "margin-left: 50px; margin-top: 80px">
+                        <div  id="map" style="width:400px;height:300px;"></div><br>
+                        <a class="button is-primary is-medium is-outlined" id = "enjoybtn">
+                            좋아! 오늘은 이거다!
+                        </a><br><br>
+                        <a class="button is-primary is-medium is-outlined"  onClick="window.location.reload()">
+                            흠..아냐 다시 고르자
+                        </a><br><br>
+                        <a class="button is-primary is-medium is-outlined" style = "width: 100"  
+                            onClick="window.open('https://map.kakao.com/?sName={{my_user.user_loc_add}}&eName={{pick.place_name}}&target=walk'
+                            , 'find_load','width=900,height=500, location=no, status=no, scrollbars=yes');">
+                            여기는 어떻게 가죠?
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+                            
+    <script src="../js/bulma.js"></script>
+    <script src = "http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=849fd1b1d68908f0370f8b19d303280f"></script>
+    <script>
+        x = {{ pick.x }}
+        y = {{ pick.y }}
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = { 
+            center: new kakao.maps.LatLng(y,x), // 지도의 중심좌표
+            level: 4 // 지도의 확대 레벨
+        };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        // 마커가 표시될 위치입니다 
+        var markerPosition  = new kakao.maps.LatLng(y,x); 
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition,
+            clickable: true
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+        // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+        var iwContent = 
+        '<div style="padding:5px;"><a href="{{pick.place_url}}" style="color:blue" target="_blank">{{pick.place_name}}</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+        
+        iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content : iwContent,
+            removable : iwRemoveable
+        });
+        kakao.maps.event.addListener(marker, 'click', function() {
+            // 마커 위에 인포윈도우를 표시합니다
+            infowindow.open(map, marker);  
+        });
+
+        // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+        
+    </script>
+    </section>
+    <script>
+      $('[id = enjoybtn]').click(() => {
+      $.ajax({
+          type : 'get',
+          url : '../../having_function/',
+          data : {},
+          success: function(res){
+              alert("맛있는 식사 하세요 ^^")
+          },
+        });
+      } )
+    </script>
+   
+    
+</body>
+
+</html>
